@@ -1,36 +1,110 @@
-# Retrotech-tycoon
- “Garajdan başlayan, gerçek zamanlı kaynak yönetimli teknoloji simülasyonu”
 # RetroTech Tycoon
 
-**RetroTech Tycoon**, 1970’lerin sonunda geçen, oyuncunun garajında teknoloji üretmeye çalıştığı bir strateji-simülasyon oyunudur. Amacın; donanım, yazılım ve oyun geliştirme alanlarında kariyer yaparak, sıfırdan kendi teknoloji imparatorluğunu kurmak!
+**RetroTech Tycoon**, 1970'lerin sonunda geçen, oyuncunun garajında teknoloji üretmeye çalıştığı bir strateji-simülasyon oyunudur. Oyuncu donanım, yazılım ve oyun geliştirme alanlarında kariyer yaparak, gerçek zamanlı bir sistem içinde kendi teknoloji imparatorluğunu kurmaya çalışır.
 
-![banner-placeholder](https://via.placeholder.com/800x200.png?text=RetroTech+Tycoon)
+---
 
 ## Özellikler
 
-- **Karakter Yaratma:** Oyuncular 7 puanla karakterlerini özelleştirir (3 teknik, 3 aktif özellik).
-- **Gerçek Zamanlı Proje Yönetimi:** Projeler başlatıldığında gerçek dünyadaki süre kadar beklenmesi gerekir.
-- **Yıldız Tabanlı Kabiliyet Sistemi:** Renkli ve bölünebilir yıldızlar oyuncunun hangi projeleri yapabileceğini etkiler.
-- **Modüler Ana Ekran:** Karakter, projeler, teknoloji ağacı ve ekip yönetimi gibi bölümler ayrı modüller halinde görüntülenir.
-- **Tarihsel Teknoloji Ağacı:** Gerçek bilgisayar tarihine dayalı donanım ve yazılım gelişim yolları.
-- **Gelecekte:** Ekip üyeleri, yatırımcılar, rakip firmalar ve pazar dinamikleri gibi özelliklerle genişletilebilir.
+### Karakter Sistemi
+- 3 Teknik Özellik: Hardware, Software, UI/UX
+- 3 Aktif Özellik: Yaratıcılık, Verimlilik, Problem Çözme
+- Karakter yaratma sırasında 7 puan verilir (4 teknik + 3 aktif)
+- Özellikler renkli yıldız sistemiyle tanımlanır (beyaz < sarı < turuncu < kırmızı < mor < mavi)
+- Her yıldız 5 kola bölünebilir (örnek: 2.6 yıldız)
 
-## Kurulum
+### Gerçek Zamanlı Proje Sistemi
+- Projeler gerçek zamanla işler (örnek: 15 dakikalık proje gerçekten 15 dakika sürer)
+- Oyuncu oyunda olmasa da süre işlemeye devam eder
 
-### Gerekli Kurulumlar
+### Dinamik Zaman Akışı
+- Oyun yılı zamanla yavaşlar:
+  - Başta hızlı ilerler (örneğin 1 yıl = 2 saat)
+  - İlerledikçe teknolojik karmaşıklığa göre yavaşlar
 
-- Python 3.8+
-- pip
-- virtualenv (önerilir)
+### Kaynaklar
+- Temel: Para (USD), Süre (dakika)
+- Her teknoloji ve proje bu iki kaynakla gerçekleştirilir
+- İleride ikincil kaynaklar eklenebilir
 
-### Başlatmak İçin
+---
 
-```bash
-git clone https://github.com/kullaniciadi/retrotech-tycoon.git
-cd retrotech-tycoon
+## Teknoloji Ağaçları
 
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+### Ortak Teknoloji Ağı
+- Oyuncu herhangi bir alanda ilerleyebilir (yazılım, donanım, oyun)
+- Her teknoloji:
+  - Gerekli yıldız seviyesi
+  - Gerçekçi dolar maliyeti (döneme uygun)
+  - Belirli bir geliştirme süresi (gerçek zaman)
 
-pip install -r requirements.txt
-python run.py
+### Örnek: Hardware Ağacı (1977–1985)
+- **Apple II Klavye Tasarımı**: $45, 15 dakika, ≥ 6 beyaz Hardware
+- **RS-232 Arabirimi**: $80, 25 dakika, ≥ 1.4 sarı Hardware
+- **Floppy Disk Denetleyici**: $150, 45 dakika, ≥ 2.0 sarı Hardware
+> Tüm teknolojiler gerçek tarihlere ve bileşenlere dayanır.
+
+---
+
+## Ana Ekran – Modüler Yapı
+
+### Modüller
+- Karakter Durumu
+- Projeler Modülü
+- Teknoloji Ağacı
+- Zaman Takvimi
+- Çalışma Ortamı (ekip üyeleri)
+- Kaynak ve Rapor Paneli
+- Popup Bilgi Kutuları
+
+### Çalışma Ortamı
+- Başlangıçta oyuncu yalnızdır
+- İleride ekip üyeleri işe alınabilir
+- Her üyenin kendi yıldız özellikleri olur
+- Büyük projelerde ekip üyeleri kullanılabilir
+
+---
+
+## Teknik Altyapı
+
+- **Backend:** Flask
+- **Arayüz:** HTML, CSS, JS (Bootstrap destekli)
+- **Veri Yapısı:** Beyaz yıldız sayısına dayalı hesaplama
+- **Gerçek Zamanlı Süre Takibi:** Flask + zaman damgası ile yapılır
+
+### Proje Yapısı
+
+retrotech_tycoon/
+├── app/
+│ ├── templates/
+│ ├── static/
+│ ├── routes.py
+│ ├── models.py
+│ └── utils.py
+├── run.py
+├── requirements.txt
+└── README.md
+
+
+---
+
+## Geliştirme Durumu
+
+- [x] Tema ve kurgu belirlendi
+- [x] Karakter sistemi ve yıldız yapısı kurgulandı
+- [x] Gerçek zamanlı süre ve kaynak sistemi tasarlandı
+- [x] Hardware teknoloji ağacı (1977–1985) oluşturuldu
+- [x] Replit uyumlu starter template (.zip) hazırlandı
+- [ ] Karakter yaratma arayüzü (yakında)
+- [ ] Dashboard (ana ekran) modülleri (yakında)
+- [ ] Proje başlatma-tamamlama döngüsü (yakında)
+
+---
+
+## Lisans
+
+MIT License – Açık kaynaklı geliştirilmekte
+
+---
+
+RetroTech Tycoon ile dijital devrimi kendi ellerinle başlat!
